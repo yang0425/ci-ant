@@ -27,7 +27,7 @@
         <javac srcdir="${test.path}" destdir="${build.path}" classpathref="compile.path"/>
     </target>
 
-    <target name="test" depends="clean,compile">
+    <target name="test" depends="compile">
         <junit printsummary="true" fork="true">
             <formatter type="xml" usefile="true"/>
             <classpath refid="compile.path"/>
