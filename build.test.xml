@@ -1,0 +1,54 @@
+<project name="ci-ant" default="test" basedir=".">
+    <description>
+        an ant example for ci
+    </description>
+    <property name="src.path" location="src/main"/>
+    <property name="build.path" location="build"/>
+    <property name="test.path" location="src/test"/>
+    <property name="lib.path" location="lib"/>
+    <property name="report.path" location="report"/>
+
+    <path id="compile.path">
+        <fileset dir="${lib.path}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement path="${build.path}"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build.path}"/>
+        <mkdir dir="${report.path}"/>
+    </target>
+
+    <target name="compile" depends="init"
+            description="compile the source">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src.path}" destdir="${build.path}" classpathref="compile.path"/>
+        <javac srcdir="${test.path}" destdir="${build.path}" classpathref="compile.path"/>
+    </target>
+
+    <target name="test" depends="clean,compile">
+        <junit printsummary="true" fork="true">
+            <formatter type="xml" usefile="true"/>
+            <classpath refid="compile.path"/>
+            <batchtest fork="on" todir="${report.path}" haltonfailure="no">
+                <fileset dir="${build.path}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+
+        <junitreport todir="${report.path}">
+            <fileset dir="${report.path}">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="${report.path}" />
+        </junitreport>
+    </target>
+
+    <target name="clean"
+            description="clean up">
+        <delete dir="${report.path}"/>
+        <delete dir="${build.path}"/>
+    </target>
+</project>
