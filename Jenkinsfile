@@ -1,4 +1,4 @@
-stage('UnitTest') {
+stage('Unit Test') {
     node {
         echo "success"
     }
