@@ -13,4 +13,9 @@ public class HelloWorldTest {
         assertTrue(HelloWorld.fail());
     }
 
+    @org.junit.Test
+    public void success() throws Exception {
+        assertTrue(true);
+    }
+
 }
