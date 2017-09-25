@@ -8,5 +8,5 @@ node {
 
     stage 'UnitTest'
     sh "ant -buildfile build.test.xml test"
-    junit healthScaleFactor: 50.0, testResults: 'report/TEST-*.xml'
+    junit healthScaleFactor: 5.0, testResults: 'report/TEST-*.xml'
 }
