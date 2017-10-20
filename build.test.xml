@@ -1,4 +1,4 @@
-<project name="ci-ant" default="test" basedir=".">
+<project name="ci-ant" default="test" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
     <description>
         an ant example for ci
     </description>
@@ -7,6 +7,11 @@
     <property name="test.path" location="src/test"/>
     <property name="lib.path" location="lib"/>
     <property name="report.path" location="report"/>
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="${lib.path}/jacocoant.jar">
+        </classpath>
+    </taskdef>
 
     <path id="compile.path">
         <fileset dir="${lib.path}">
@@ -25,6 +30,21 @@
         <!-- Compile the java code from ${src} into ${build} -->
         <javac srcdir="${src.path}" destdir="${build.path}" classpathref="compile.path"/>
         <javac srcdir="${test.path}" destdir="${build.path}" classpathref="compile.path"/>
+    </target>
+
+    <target name="coverage" depends="compile">
+        <jacoco:coverage>
+            <junit printsummary="true" fork="true">
+                <formatter type="xml" usefile="true"/>
+                <classpath refid="compile.path"/>
+                <batchtest fork="on" todir="${report.path}" haltonfailure="no">
+                    <fileset dir="${build.path}">
+                        <include name="**/*Test.class"/>
+                    </fileset>
+                </batchtest>
+            </junit>
+        </jacoco:coverage>
+
     </target>
 
     <target name="test" depends="compile">
