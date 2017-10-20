@@ -10,7 +10,7 @@ public class HelloWorldTest {
 
     @org.junit.Test
     public void fail() throws Exception {
-        assertTrue(HelloWorld.fail());
+        assertFalse(HelloWorld.fail());
     }
 
     @org.junit.Test
