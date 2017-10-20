@@ -7,6 +7,9 @@ public class HelloWorld {
     }
 
     public static boolean fail() {
+        if(1==2){
+            return true;
+        }
         return false;
     }
 

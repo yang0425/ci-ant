@@ -45,6 +45,24 @@
             </junit>
         </jacoco:coverage>
 
+        <jacoco:report>
+            <executiondata>
+                <file file="jacoco.exec" />
+            </executiondata>
+            <structure name="MeltingPot unit test coverage rate report.">
+                <classfiles>
+                    <fileset dir="${build.path}" />
+                </classfiles>
+                <sourcefiles encoding="UTF-8">
+                    <fileset dir="${src.path}" />
+                </sourcefiles>
+            </structure>
+
+            <html footer="Onecloud MeltingPot." destdir="${report.path}" />
+            <csv destfile="${report.path}/coverage-report.csv" />
+            <xml destfile="${report.path}/coverage-report.xml" />
+        </jacoco:report>
+
     </target>
 
     <target name="test" depends="compile">
