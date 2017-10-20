@@ -23,6 +23,7 @@
 
     <target name="init">
         <mkdir dir="${build.path}"/>
+        <mkdir dir="${build.test.path}"/>
         <mkdir dir="${report.path}"/>
     </target>
 
