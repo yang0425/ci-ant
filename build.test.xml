@@ -34,7 +34,7 @@
         <javac srcdir="${test.path}" destdir="${build.test.path}" classpathref="compile.path"/>
     </target>
 
-    <target name="coverage" depends="compile">
+    <target name="coverage" depends="clean,compile">
         <jacoco:coverage>
             <junit printsummary="true" fork="true">
                 <formatter type="xml" usefile="true"/>
@@ -90,5 +90,6 @@
             description="clean up">
         <delete dir="${report.path}"/>
         <delete dir="${build.path}"/>
+        <delete dir="${build.test.path}"/>
     </target>
 </project>
