@@ -6,8 +6,8 @@ public class HelloWorld {
         return "Hello World!";
     }
 
-    public static boolean fail() {
-        if(1==2){
+    public static boolean fail(int a) {
+        if(a==0){
             return true;
         }
         return false;
