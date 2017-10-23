@@ -45,6 +45,13 @@
                     </fileset>
                 </batchtest>
             </junit>
+
+            <junitreport todir="${report.path}">
+                <fileset dir="${report.path}">
+                    <include name="TEST-*.xml" />
+                </fileset>
+                <report format="frames" todir="${report.path}" />
+            </junitreport>
         </jacoco:coverage>
 
         <jacoco:report>
@@ -65,12 +72,7 @@
             <xml destfile="${report.path}/coverage-report.xml" />
         </jacoco:report>
 
-        <junitreport todir="${report.path}">
-            <fileset dir="${report.path}">
-                <include name="TEST-*.xml" />
-            </fileset>
-            <report format="frames" todir="${report.path}" />
-        </junitreport>
+
 
     </target>
 
