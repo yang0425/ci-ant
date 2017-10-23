@@ -2,3 +2,4 @@
 build
 report
 dist
+jacoco.exec

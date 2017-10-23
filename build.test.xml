@@ -21,6 +21,14 @@
         <pathelement path="${build.path}"/>
     </path>
 
+    <path id="compile.test.path">
+        <fileset dir="${lib.path}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement path="${build.path}"/>
+        <pathelement path="${build.test.path}"/>
+    </path>
+
     <target name="init">
         <mkdir dir="${build.path}"/>
         <mkdir dir="${build.test.path}"/>
@@ -38,9 +46,9 @@
         <jacoco:coverage>
             <junit printsummary="true" fork="true">
                 <formatter type="xml" usefile="true"/>
-                <classpath refid="compile.path"/>
+                <classpath refid="compile.test.path"/>
                 <batchtest fork="on" todir="${report.path}" haltonfailure="no">
-                    <fileset dir="${build.path}">
+                    <fileset dir="${build.test.path}">
                         <include name="**/*Test.class"/>
                     </fileset>
                 </batchtest>
@@ -78,9 +86,9 @@
     <target name="test" depends="compile">
         <junit printsummary="true" fork="true">
             <formatter type="xml" usefile="true"/>
-            <classpath refid="compile.path"/>
+            <classpath refid="compile.test.path"/>
             <batchtest fork="on" todir="${report.path}" haltonfailure="no">
-                <fileset dir="${build.path}">
+                <fileset dir="${build.test.path}">
                     <include name="**/*Test.class"/>
                 </fileset>
             </batchtest>
