@@ -3,8 +3,8 @@
         an ant example for ci
     </description>
     <property name="src.path" location="src/main"/>
-    <property name="build.path" location="build"/>
-    <property name="build.test.path" location="build"/>
+    <property name="build.path" location="build/main"/>
+    <property name="build.test.path" location="build/test"/>
     <property name="test.path" location="src/test"/>
     <property name="lib.path" location="lib"/>
     <property name="report.path" location="report"/>
